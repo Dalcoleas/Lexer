@@ -18,4 +18,4 @@ private class Camisa{
     }
 }
 
-camisa = 5
+var prueba = 5

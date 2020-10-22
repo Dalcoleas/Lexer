@@ -14,6 +14,8 @@ cont = 0
 tokenV = 0
 tokenV1 = 0
 tokenV2 = 0
+tokenV3 = 0
+tokenV4 = 0
 
 
 print("Analizador Lexigrafico\n")
@@ -30,10 +32,12 @@ for token in tokens:
             bandera = True
             tokenValue = token.value
             tokenV = tokens.index(token)
-        if (token.type == Type.ASIGNACION and tokens.index(token)-2 == tokenV and bandera):
+            tokenV3 = tokens.index(token)
+        if (bandera and token.type == Type.ASIGNACION and (tokens.index(token)-2 == tokenV or tokens.index(token)-1 == tokenV3)):
             banderaAssing = True
             tokenV2 = tokens.index(token)
-        if (token.type == Type.CADENA_LITERAL or token.type == Type.CONSTANTE_INT and tokens.index(token)-2 == tokenV2 or token.type == Type.CONSTANTE_DOUBLE or token.type == Type.CADENA_LITERAL or token.type == Type.BOOLEAN_VAL and banderaAssing):
+            tokenV4 = tokens.index(token)
+        if (token.type == Type.CADENA_LITERAL or token.type == Type.CONSTANTE_INT and (tokens.index(token)-2 == tokenV2 or tokens.index(token)-1 == tokenV4) or token.type == Type.CONSTANTE_DOUBLE or token.type == Type.CADENA_LITERAL or token.type == Type.BOOLEAN_VAL and banderaAssing):
             iden = Identificador(tokenValue, token.value, token.type)
             listaIdentificadores.append(iden)
             bandera = False
